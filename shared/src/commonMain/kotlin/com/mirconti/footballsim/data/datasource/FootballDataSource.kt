@@ -1,9 +1,10 @@
 package com.mircontapp.sportalbum.data.datasource
 
-import com.mircontapp.sportalbum.domain.models.PlayerModel
-import com.mircontapp.sportalbum.domain.models.TeamModel
+import com.mirconti.footballsim.domain.models.PlayerModel
+import com.mirconti.footballsim.domain.models.TeamModel
 
-interface AlbumDataSource {
+
+interface FootballDataSource {
     abstract suspend fun fetchPlayers(): List<PlayerModel>?
 
     abstract suspend fun fetchTeams(): List<TeamModel>?

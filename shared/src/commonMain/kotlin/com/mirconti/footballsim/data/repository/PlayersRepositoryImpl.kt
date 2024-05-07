@@ -1,21 +1,15 @@
 package com.mircontapp.sportalbum.data.repository
 
 import com.mirco.sportalbum.utils.Enums
-import com.mircontapp.sportalbum.commons.PlayerHelper
-import com.mircontapp.sportalbum.data.datasource.AlbumDataSource
-import com.mircontapp.sportalbum.domain.models.PlayerModel
-import com.mircontapp.sportalbum.domain.models.TeamModel
+import com.mircontapp.sportalbum.data.datasource.FootballDataSource
 import com.mircontapp.sportalbum.domain.repository.PlayersRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.mirconti.footballsim.domain.models.PlayerModel
 
 
-class PlayersRepositoryImpl(val albumDataSource: AlbumDataSource): PlayersRepository {
+class PlayersRepositoryImpl(val footballDataSource: FootballDataSource): PlayersRepository {
 
     override suspend fun getAllPlayers(): List<PlayerModel> {
-        return albumDataSource.fetchPlayers()?.toList() ?: ArrayList()
+        return footballDataSource.fetchPlayers()?.toList() ?: ArrayList()
     }
 
     override suspend fun playersFromTeam(teamName: String) : List<PlayerModel> {
@@ -35,11 +29,11 @@ class PlayersRepositoryImpl(val albumDataSource: AlbumDataSource): PlayersReposi
     }
 
     override suspend fun insertPlayer(playerModel: PlayerModel) {
-        albumDataSource.insertPlayer(playerModel)
+        footballDataSource.insertPlayer(playerModel)
     }
 
     override suspend fun updatePlayer(playerModel: PlayerModel) {
-        albumDataSource.updatePlayer(playerModel)
+        footballDataSource.updatePlayer(playerModel)
     }
 
 

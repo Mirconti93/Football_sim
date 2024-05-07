@@ -1,22 +1,17 @@
 package com.mircontapp.sportalbum.data.repository
 
 import com.mirco.sportalbum.utils.Enums
-import com.mircontapp.sportalbum.data.datasource.AlbumDataSource
-import com.mircontapp.sportalbum.domain.models.TeamModel
+import com.mircontapp.sportalbum.data.datasource.FootballDataSource
 import com.mircontapp.sportalbum.domain.repository.TeamsRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.mirconti.footballsim.domain.models.TeamModel
 import java.util.*
 import javax.inject.Inject
-import kotlin.Comparator
 import kotlin.collections.ArrayList
 
-class TeamsRepositoryImpl @Inject constructor(val albumDataSource: AlbumDataSource) : TeamsRepository {
+class TeamsRepositoryImpl @Inject constructor(val footballDataSource: FootballDataSource) : TeamsRepository {
 
     override suspend fun getAllTeams(): List<TeamModel> {
-        return albumDataSource.fetchTeams()?.toMutableList() ?: ArrayList()
+        return footballDataSource.fetchTeams()?.toMutableList() ?: ArrayList()
     }
 
     override suspend fun addTeam(teamModel: TeamModel) {
@@ -28,11 +23,11 @@ class TeamsRepositoryImpl @Inject constructor(val albumDataSource: AlbumDataSour
     }
 
     override suspend fun updateTeam(teamModel: TeamModel) {
-        albumDataSource.updateTeam(teamModel)
+        footballDataSource.updateTeam(teamModel)
     }
 
     override suspend fun insertTeam(teamModel: TeamModel) {
-        albumDataSource.insertTeam(teamModel)
+        footballDataSource.insertTeam(teamModel)
     }
 
     override suspend fun getNationalTeams(): List<TeamModel> {
